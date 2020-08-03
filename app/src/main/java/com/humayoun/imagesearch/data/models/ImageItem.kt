@@ -7,6 +7,7 @@ import com.squareup.moshi.JsonClass
 data class ImageItem (
     @Json(name = "id") val id: String?,
     @Json(name = "title") val name: String?,
+    @Json(name = "description") val description: String?,
     @Json(name = "link") val link: String?,
     @Json(name = "type")val type: String?,
     @Json(name = "is_ad") val isAd: Boolean?,
@@ -23,13 +24,11 @@ data class ImageItem (
 }
 
 
-
 // extension function to get the images only
 fun List<ImageItem>.getImagesOnly(): List<ImageItem> {
     val imageList = arrayListOf<ImageItem>()
 
     for (item  in this) {
-
         // item is image item, add in the list
         if (item.isAlbum != null && !item.isAlbum && item.isImage) {
             imageList.add(item)

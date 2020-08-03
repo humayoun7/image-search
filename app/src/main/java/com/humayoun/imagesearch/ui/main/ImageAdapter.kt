@@ -23,8 +23,8 @@ class ImageAdapter(
     ): PagingDataAdapter<ImageItem, ImageAdapter.ViewHolder>(ImageItem_COMPARATOR) {
 
     class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
-        val tvName = view.findViewById<TextView>(R.id.tvImageName)
-        val ivImage = view.findViewById<ImageView>(R.id.ivImageItem)
+        val tvName: TextView = view.findViewById<TextView>(R.id.tvImageName)
+        val ivImage: ImageView = view.findViewById<ImageView>(R.id.ivImageItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,8 +46,6 @@ class ImageAdapter(
 
             holder.itemView.setOnClickListener { onClick.onItemClick(imageItem) }
         }
-
-
     }
 
     interface OnClick {

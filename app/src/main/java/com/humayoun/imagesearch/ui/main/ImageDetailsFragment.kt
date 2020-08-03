@@ -22,14 +22,17 @@ class ImageDetailsFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
     private lateinit var navController: NavController
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
+        goFullScreen()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        init()
-        goFullScreen()
-
         return inflater.inflate(R.layout.image_details_fragment, container, false)
     }
 
@@ -41,20 +44,19 @@ class ImageDetailsFragment : Fragment() {
     fun init() {
         viewModel = ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+    }
 
+    fun initUI() {
         viewModel.selectedImage.observe(viewLifecycleOwner, Observer {
             Log.i("imageDetails", it.toString())
             Glide.with(requireActivity())
                 .load(it.link)
                 .into(photoView)
         })
-    }
 
-    fun initUI() {
         photoView.setOnPhotoTapListener { _, _, _ ->
-            Toast.makeText(requireContext(), viewModel.selectedImage.value?.name, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), viewModel.selectedImage.value?.description, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     override fun onDestroy() {
@@ -66,7 +68,6 @@ class ImageDetailsFragment : Fragment() {
         requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
-
 
     private fun undoFullScreen() {
         requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);

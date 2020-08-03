@@ -11,6 +11,5 @@ class ImgurAuthInterceptor: Interceptor {
             .build()
 
         return  chain.proceed(request)
-
     }
 }

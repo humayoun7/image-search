@@ -38,10 +38,7 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = of(requireActivity()).get(MainViewModel::class.java)
-//        viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory(app)).get(MainViewModel::class.java)
-        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
-        adapter = ImageAdapter(requireContext(), this)
+        init()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +52,13 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
         initUI()
         checkForInitialSearch()
 
+    }
+
+    private fun init() {
+        viewModel = of(requireActivity()).get(MainViewModel::class.java)
+        //viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory()).get(MainViewModel::class.java)
+        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+        adapter = ImageAdapter(requireContext(), this)
     }
 
     private fun initUI() {
