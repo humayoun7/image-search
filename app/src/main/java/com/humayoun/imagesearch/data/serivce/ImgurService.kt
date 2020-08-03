@@ -3,7 +3,6 @@ package com.humayoun.imagesearch.data.serivce
 import com.humayoun.imagesearch.data.models.ImugrResponse
 import com.humayoun.imagesearch.utils.Constants
 import okhttp3.OkHttpClient
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -23,7 +22,7 @@ interface ImgurService {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.IMGUR_SERVICE.BASE_URL)
+                .baseUrl(Constants.ImgurService.BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .client(httpClinet)
                 .build()

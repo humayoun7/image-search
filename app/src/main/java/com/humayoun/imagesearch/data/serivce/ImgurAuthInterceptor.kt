@@ -7,7 +7,7 @@ import okhttp3.Response
 class ImgurAuthInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request().newBuilder()
-            .addHeader(Constants.IMGUR_SERVICE.AUTHORIZATION_HEADER, Constants.IMGUR_SERVICE.AUTHORIZATION_HEADER_VALUE)
+            .addHeader(Constants.ImgurService.AUTHORIZATION_HEADER, Constants.ImgurService.AUTHORIZATION_HEADER_VALUE)
             .build()
 
         return  chain.proceed(request)

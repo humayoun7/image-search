@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ImugrResponse (
-    val data: List<ImageItem>,
+    val data: List<GalleryItem>,
     val success: Boolean,
     val status: Int
 )

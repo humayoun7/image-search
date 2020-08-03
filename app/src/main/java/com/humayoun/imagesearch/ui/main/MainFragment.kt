@@ -1,9 +1,6 @@
 package com.humayoun.imagesearch.ui.main
 
-import android.app.Application
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +13,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.paging.LoadState
 import com.humayoun.imagesearch.R
-import com.humayoun.imagesearch.data.models.ImageItem
+import com.humayoun.imagesearch.data.models.GalleryItem
 import com.humayoun.imagesearch.utils.Constants
 import com.humayoun.imagesearch.utils.hideKeyboard
 import com.humayoun.imagesearch.utils.onSearch
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -55,8 +51,7 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
     }
 
     private fun init() {
-        viewModel = of(requireActivity()).get(MainViewModel::class.java)
-        //viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         adapter = ImageAdapter(requireContext(), this)
     }
@@ -70,7 +65,7 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
 
     private fun checkForInitialSearch() {
         if(viewModel.currentlySearchingFor == null) {
-            search(Constants.INTIAL_QUERY)
+            search(Constants.INITIAL_QUERY)
         }
     }
 
@@ -90,7 +85,7 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
         requireActivity().hideKeyboard()
     }
 
-    override fun onItemClick(item: ImageItem) {
+    override fun onItemClick(item: GalleryItem) {
         viewModel.selectedImage.value = item
         navController.navigate(R.id.action_mainFragment_to_imageDetailsFragment)
 

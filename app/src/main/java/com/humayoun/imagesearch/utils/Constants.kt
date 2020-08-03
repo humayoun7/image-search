@@ -1,7 +1,7 @@
 package com.humayoun.imagesearch.utils
 
 object Constants {
-    object IMGUR_SERVICE {
+    object ImgurService {
         const val BASE_URL = "https://api.imgur.com/"
         const val AUTHORIZATION_HEADER = "Authorization"
         const val AUTHORIZATION_HEADER_VALUE = "Client-ID b067d5cb828ec5a"
@@ -9,6 +9,6 @@ object Constants {
         const val PAGE_SIZE = 50
     }
 
-    // to show some images when the app starts
-    const val INTIAL_QUERY = "random"
+    // to show some galleries when the app starts
+    const val INITIAL_QUERY = "random"
 }

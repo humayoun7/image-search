@@ -1,7 +1,6 @@
 package com.humayoun.imagesearch.ui.main
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +11,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.humayoun.imagesearch.R
-import com.humayoun.imagesearch.data.models.ImageItem
-import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.android.synthetic.main.main_fragment.*
+import com.humayoun.imagesearch.data.models.GalleryItem
 
 
 class ImageAdapter(
     private val context: Context,
     private val onClick: OnClick
-    ): PagingDataAdapter<ImageItem, ImageAdapter.ViewHolder>(ImageItem_COMPARATOR) {
+    ): PagingDataAdapter<GalleryItem, ImageAdapter.ViewHolder>(ImageItem_COMPARATOR) {
 
     class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
         val tvName: TextView = view.findViewById<TextView>(R.id.tvImageName)
@@ -49,16 +46,16 @@ class ImageAdapter(
     }
 
     interface OnClick {
-        fun onItemClick(item: ImageItem)
+        fun onItemClick(item: GalleryItem)
     }
 
     companion object {
-        private val ImageItem_COMPARATOR = object : DiffUtil.ItemCallback<ImageItem>() {
-            override fun areItemsTheSame(oldItem: ImageItem, newItem: ImageItem): Boolean {
+        private val ImageItem_COMPARATOR = object : DiffUtil.ItemCallback<GalleryItem>() {
+            override fun areItemsTheSame(oldItem: GalleryItem, newItem: GalleryItem): Boolean {
                 return  oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: ImageItem, newItem: ImageItem): Boolean {
+            override fun areContentsTheSame(oldItem: GalleryItem, newItem: GalleryItem): Boolean {
                 return  oldItem.id == newItem.id
             }
 

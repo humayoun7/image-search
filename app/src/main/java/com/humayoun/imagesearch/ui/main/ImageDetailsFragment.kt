@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
@@ -42,26 +43,28 @@ class ImageDetailsFragment : Fragment() {
     }
 
     fun init() {
-        viewModel = ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
     }
 
     fun initUI() {
         viewModel.selectedImage.observe(viewLifecycleOwner, Observer {
-            Log.i("imageDetails", it.toString())
             Glide.with(requireActivity())
                 .load(it.link)
                 .into(photoView)
         })
 
+        // showing image description on tap
         photoView.setOnPhotoTapListener { _, _, _ ->
-            Toast.makeText(requireContext(), viewModel.selectedImage.value?.description, Toast.LENGTH_SHORT).show()
+            viewModel.selectedImage.value?.description?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        undoFullScreen()
+        exitFullScreen()
     }
 
     private fun goFullScreen() {
@@ -69,7 +72,7 @@ class ImageDetailsFragment : Fragment() {
         requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    private fun undoFullScreen() {
+    private fun exitFullScreen() {
         requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
     }
