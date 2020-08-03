@@ -50,10 +50,6 @@ class ImageAdapter(
 
     }
 
-//    override fun getItemCount(): Int {
-//        return imageList.size
-//    }
-
     interface OnClick {
         fun onItemClick(item: ImageItem)
     }

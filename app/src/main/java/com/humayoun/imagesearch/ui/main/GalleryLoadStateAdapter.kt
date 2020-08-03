@@ -1,7 +1,6 @@
 package com.humayoun.imagesearch.ui.main
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -39,6 +38,8 @@ class GalleryLoadStateAdapter(
             pbLoading.visibility = if (loadState is  LoadState.Loading ) View.VISIBLE else View.GONE
             btnRetry.visibility = if (loadState !is LoadState.Loading ) View.VISIBLE else View.GONE
             txtError.visibility = if (loadState !is  LoadState.Loading ) View.VISIBLE else View.GONE
+
+            btnRetry.setOnClickListener{ retry() }
         }
 
     }

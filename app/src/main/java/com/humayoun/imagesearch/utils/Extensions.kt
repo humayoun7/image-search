@@ -6,9 +6,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
 
-fun EditText.onDone(callback: () -> Unit) {
+fun EditText.onSearch(callback: () -> Unit) {
     setOnEditorActionListener { _, actionId, _ ->
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             callback.invoke()
             true
         }

@@ -1,6 +1,7 @@
 package com.humayoun.imagesearch.ui.main
 
 import android.app.Application
+import android.os.Parcelable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,10 +17,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     val imageRepository = ImageItemRepository(app, ImgurService.create())
     val imageData = imageRepository.imageData
 
-    private var currentlySearchingFor: String? = null
+    var currentlySearchingFor: String? = null
     var currentSearchResults: Flow<PagingData<ImageItem>>? = null
 
     var selectedImage = MutableLiveData<ImageItem>()
+
+    var rvState: Parcelable? = null
 
     fun getImages(searchFor: String) {
         imageRepository.searchForImages(searchFor)
