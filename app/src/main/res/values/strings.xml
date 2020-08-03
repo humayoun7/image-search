@@ -3,4 +3,5 @@
     <string name="search">Search</string>
     <string name="retry">Retry</string>
     <string name="search_hint">Search Images</string>
+    <string name="something_went_wrong">Sorry Something went wrong</string>
 </resources>

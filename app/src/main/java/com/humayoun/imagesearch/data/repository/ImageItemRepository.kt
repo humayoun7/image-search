@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.humayoun.imagesearch.data.paging.ImgurPagingSource
 import com.humayoun.imagesearch.data.models.GalleryItem
 import com.humayoun.imagesearch.data.serivce.ImgurService
-import com.humayoun.imagesearch.utils.Constants
+import com.humayoun.imagesearch.Constants
 import kotlinx.coroutines.flow.Flow
 
 class ImageItemRepository (

@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders.of
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.paging.LoadState
 import com.humayoun.imagesearch.R
 import com.humayoun.imagesearch.data.models.GalleryItem
-import com.humayoun.imagesearch.utils.Constants
+import com.humayoun.imagesearch.Constants
 import com.humayoun.imagesearch.utils.hideKeyboard
 import com.humayoun.imagesearch.utils.onSearch
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -23,17 +21,17 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class MainFragment : Fragment(), ImageAdapter.OnClick {
+class MainFragment : Fragment(), GalleryAdapter.OnClick {
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var navController: NavController
-    private lateinit var adapter: ImageAdapter
+    private lateinit var adapter: GalleryAdapter
 
     // to keep track of search job and cancel previous job
     private var searchJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         init()
     }
 
@@ -52,8 +50,7 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
 
     private fun init() {
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
-        adapter = ImageAdapter(requireContext(), this)
+        adapter = GalleryAdapter(requireContext(), this)
     }
 
     private fun initUI() {
@@ -87,7 +84,9 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
 
     override fun onItemClick(item: GalleryItem) {
         viewModel.selectedImage.value = item
-        navController.navigate(R.id.action_mainFragment_to_imageDetailsFragment)
+        Navigation
+            .findNavController(requireActivity(), R.id.nav_host_fragment)
+            .navigate(R.id.action_mainFragment_to_imageDetailsFragment)
 
     }
 
@@ -121,10 +120,12 @@ class MainFragment : Fragment(), ImageAdapter.OnClick {
                 ?: loadState.append as? LoadState.Error
                 ?: loadState.prepend as? LoadState.Error
 
+            val errorMessage = getString(R.string.something_went_wrong)
+
             errorState?.let {
                 Toast.makeText(
                     requireContext(),
-                    "${it.error}",
+                    "$errorMessage ${it.error}",
                     Toast.LENGTH_LONG
                 ).show()
             }

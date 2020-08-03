@@ -1,7 +1,7 @@
 package com.humayoun.imagesearch.data.serivce
 
 import com.humayoun.imagesearch.data.models.ImugrResponse
-import com.humayoun.imagesearch.utils.Constants
+import com.humayoun.imagesearch.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

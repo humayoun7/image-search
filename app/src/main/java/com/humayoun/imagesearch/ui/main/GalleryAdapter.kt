@@ -14,14 +14,14 @@ import com.humayoun.imagesearch.R
 import com.humayoun.imagesearch.data.models.GalleryItem
 
 
-class ImageAdapter(
+class GalleryAdapter(
     private val context: Context,
     private val onClick: OnClick
-    ): PagingDataAdapter<GalleryItem, ImageAdapter.ViewHolder>(ImageItem_COMPARATOR) {
+    ): PagingDataAdapter<GalleryItem, GalleryAdapter.ViewHolder>(ImageItem_COMPARATOR) {
 
     class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
-        val tvName: TextView = view.findViewById<TextView>(R.id.tvImageName)
-        val ivImage: ImageView = view.findViewById<ImageView>(R.id.ivImageItem)
+        val tvName: TextView = view.findViewById(R.id.tvImageName)
+        val ivImage: ImageView = view.findViewById(R.id.ivImageItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

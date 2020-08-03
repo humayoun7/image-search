@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import com.humayoun.imagesearch.data.models.GalleryItem
 import com.humayoun.imagesearch.data.models.getImagesOnly
 import com.humayoun.imagesearch.data.serivce.ImgurService
-import com.humayoun.imagesearch.utils.Constants
+import com.humayoun.imagesearch.Constants
 import java.lang.Exception
 
 class ImgurPagingSource (

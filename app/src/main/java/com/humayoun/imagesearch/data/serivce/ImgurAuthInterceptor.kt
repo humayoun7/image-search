@@ -1,6 +1,6 @@
 package com.humayoun.imagesearch.data.serivce
 
-import com.humayoun.imagesearch.utils.Constants
+import com.humayoun.imagesearch.Constants
 import okhttp3.Interceptor
 import okhttp3.Response
 

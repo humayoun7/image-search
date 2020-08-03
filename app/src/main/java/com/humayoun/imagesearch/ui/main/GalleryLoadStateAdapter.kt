@@ -17,9 +17,9 @@ class GalleryLoadStateAdapter(
 ): LoadStateAdapter<GalleryLoadStateAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-        val txtError: TextView = view.findViewById<TextView>(R.id.txtError)
-        val btnRetry: Button = view.findViewById<Button>(R.id.btnRetry)
-        val pbLoading: ProgressBar = view.findViewById<ProgressBar>(R.id.pbLoading)
+        val txtError: TextView = view.findViewById(R.id.txtError)
+        val btnRetry: Button = view.findViewById(R.id.btnRetry)
+        val pbLoading: ProgressBar = view.findViewById(R.id.pbLoading)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): ViewHolder {

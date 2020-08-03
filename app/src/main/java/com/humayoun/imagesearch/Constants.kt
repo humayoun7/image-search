@@ -1,4 +1,4 @@
-package com.humayoun.imagesearch.utils
+package com.humayoun.imagesearch
 
 object Constants {
     object ImgurService {
@@ -9,6 +9,6 @@ object Constants {
         const val PAGE_SIZE = 50
     }
 
-    // to show some galleries when the app starts
+    // to show some images when the app starts
     const val INITIAL_QUERY = "random"
 }
